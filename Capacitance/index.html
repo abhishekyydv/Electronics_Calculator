@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Series & Parallel Capacitance Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<button id="backBtn" onclick="goBack()">⬅ Back</button>
+
+<body>
+  <div class="container">
+    <h1 class="title">Series & Parallel Capacitance Calculator</h1>
+
+    <div class="unit-select">
+      <label for="unit">Select Unit:</label>
+      <select id="unit">
+        <option value="1">Farads (F)</option>
+        <option value="0.001">MilliFarads (mF)</option>
+        <option value="0.000001">MicroFarads (µF)</option>
+      </select>
+    </div>
+
+    <!-- SERIES -->
+    <section class="calculator-section">
+      <h2>Series Combination</h2>
+      <div id="series-list" class="cap-list">
+        <div class="cap-input"><input type="number" placeholder="Capacitance" min="0" step="any" /></div>
+        <div class="cap-input"><input type="number" placeholder="Capacitance" min="0" step="any" /></div>
+      </div>
+      <div class="button-group">
+        <button onclick="addCapacitor('series')">+ Add Capacitor</button>
+        <button onclick="calculateSeries()">Calculate Series</button>
+      </div>
+      <p class="result">Total Series Capacitance: <span id="series-result">—</span></p>
+    </section>
+
+    <!-- PARALLEL -->
+    <section class="calculator-section">
+      <h2>Parallel Combination</h2>
+      <div id="parallel-list" class="cap-list">
+        <div class="cap-input"><input type="number" placeholder="Capacitance" min="0" step="any" /></div>
+        <div class="cap-input"><input type="number" placeholder="Capacitance" min="0" step="any" /></div>
+      </div>
+      <div class="button-group">
+        <button onclick="addCapacitor('parallel')">+ Add Capacitor</button>
+        <button onclick="calculateParallel()">Calculate Parallel</button>
+      </div>
+      <p class="result">Total Parallel Capacitance: <span id="parallel-result">—</span></p>
+    </section>
+
+    <hr />
+    <div class="explanation">
+      <h3>Formulas:</h3>
+      <p><b>Parallel:</b> Cₜ = C₁ + C₂ + C₃ + ...</p>
+      <p><b>Series:</b> 1/Cₜ = 1/C₁ + 1/C₂ + 1/C₃ + ...</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

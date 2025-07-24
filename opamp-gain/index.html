@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <button id="backBtn" onclick="goBack()">⬅</button>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Op-Amp Gain Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="page-heading">Op-Amp Gain Calculator</h1>
+    
+    <div class="mode-selector">
+      <label><input type="radio" name="mode" value="non-inverting" checked /> Non-Inverting</label>
+      <label><input type="radio" name="mode" value="inverting" /> Inverting</label>
+    </div>
+
+    <div class="image-placeholder">[Circuit Diagram Placeholder]</div>
+
+    <div class="form">
+      <label>
+        Input Resistor (Rin in Ω):
+        <input type="number" id="rin" placeholder="e.g. 10000" />
+      </label>
+      <label>
+        Feedback Resistor (Rf in Ω):
+        <input type="number" id="rf" placeholder="e.g. 47000" />
+      </label>
+      <label>
+        Input Voltage (Vin in V, optional):
+        <input type="number" id="vin" placeholder="e.g. 1.5" />
+      </label>
+
+      <div class="button-group">
+        <button id="calcBtn" class="btn primary">Calculate</button>
+        <button id="resetBtn" class="btn secondary">Reset</button>
+      </div>
+    </div>
+
+    <div class="result-display" id="resultBox">
+      <h3>Results</h3>
+      <p><strong>Configuration:</strong> <span id="configLabel">Non-Inverting</span></p>
+      <p><strong>Gain:</strong> <span id="gainResult">—</span></p>
+      <p><strong>Output Voltage (Vout):</strong> <span id="voutResult">—</span></p>
+      <p class="formula">Formula: <span id="formula">Gain = 1 + (Rf / Rin)</span></p>
+    </div>
+
+    <div class="description-block">
+      <h3>How This Calculator Works</h3>
+      <p>
+        This calculator determines the gain and output voltage of an operational amplifier
+        in two configurations:
+      </p>
+      <p><strong>Non-Inverting:</strong><br />
+        Gain: <code>Gain = 1 + (Rf / Rin)</code><br />
+        Output: <code>Vout = Gain × Vin</code>
+      </p>
+      <p><strong>Inverting:</strong><br />
+        Gain: <code>Gain = –(Rf / Rin)</code><br />
+        Output: <code>Vout = Gain × Vin</code>
+      </p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

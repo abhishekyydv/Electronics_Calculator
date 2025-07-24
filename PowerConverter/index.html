@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <button id="backBtn" onclick="goBack()">⬅</button>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Power Converters</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="page-heading">Power Converters</h1>
+
+    <!-- Input Section -->
+    <div class="section">
+  <h2>Input Parameters</h2>
+  <div class="form-group">
+    <label>Input Voltage (Min) [V]:
+      <input type="number" id="vin" placeholder="e.g. 30" />
+    </label>
+    <label>Output Voltage [V]:
+      <input type="number" id="vout" placeholder="e.g. 12" />
+    </label>
+    <label>Output Current [A]:
+      <input type="number" id="iout" placeholder="e.g. 10" />
+    </label>
+    <label>Switching Frequency [Hz]:
+      <input type="number" id="fsw" placeholder="e.g. 100000" />
+    </label>
+    <label>Ripple Voltage Pk-Pk [V]:
+      <input type="number" id="vripple" placeholder="e.g. 0.2" />
+    </label>
+    <label>Efficiency [%]:
+      <input type="number" id="eff" placeholder="e.g. 80" />
+    </label>
+    <label>Capacitor ESR [mΩ]:
+      <input type="number" id="esr" placeholder="e.g. 35" />
+    </label>
+    <label>Output Transient Current [A]:
+      <input type="number" id="itransient" placeholder="e.g. 15" />
+    </label>
+    <label>Series Inductor [nH]:
+      <input type="number" id="inductor" placeholder="e.g. 50" />
+    </label>
+  </div>
+</div>
+
+
+    <!-- Output Section -->
+    <div class="section">
+      <h2>Outputs</h2>
+      <div class="output-group">
+        <div class="output-item"><label>Duty Cycle:</label><div class="output-box" id="duty"></div></div>
+        <div class="output-item"><label>Input Power [W]:</label><div class="output-box" id="pin"></div></div>
+        <div class="output-item"><label>Ceramic Cap [µF]:</label><div class="output-box" id="cin"></div></div>
+        <div class="output-item"><label>Ripple RMS [V]:</label><div class="output-box" id="vrms"></div></div>
+        <div class="output-item"><label>Ripple Current [A]:</label><div class="output-box" id="iripple"></div></div>
+        <div class="output-item"><label>Capacitor Current [A]:</label><div class="output-box" id="icap"></div></div>
+        <div class="output-item"><label>Power Dissipation [W]:</label><div class="output-box" id="pdiss"></div></div>
+        <div class="output-item"><label>Transient Current [A]:</label><div class="output-box" id="itrans"></div></div>
+        <div class="output-item"><label>Bulk Cap (Min) [µF]:</label><div class="output-box" id="cinbulk"></div></div>
+        <div class="output-item"><label>Output Impedance [mΩ]:</label><div class="output-box" id="zout"></div></div>
+        <div class="output-item"><label>Bulk Cap [µF]:</label><div class="output-box" id="coutbulk"></div></div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-group">
+      <button onclick="calculate()">Calculate</button>
+      <button onclick="resetFields()">Reset</button>
+    </div>
+  </div>
+  <div class="section explanation">
+  <h2>How This Calculator Works</h2>
+  <p>This calculator uses the following formulas based on your input parameters:</p>
+
+  <ul>
+    <li><strong>Duty Cycle (D):</strong>  
+      <code>D = V<sub>out</sub> / (V<sub>in</sub> × Efficiency)</code><br>
+      <small>where Efficiency is in decimal (e.g., 0.8 for 80%)</small>
+    </li>
+
+    <li><strong>Input Power (P<sub>in</sub>):</strong>  
+      <code>P<sub>in</sub> = (V<sub>out</sub> × I<sub>out</sub>) + (V<sub>out</sub> × I<sub>out</sub> × (1 − Efficiency))</code>
+    </li>
+
+    <li><strong>Input Ceramic Capacitance (C<sub>in</sub>):</strong>  
+      <code>C<sub>in</sub> = (I<sub>out</sub> × D × (1 − D)) / (f<sub>sw</sub> × V<sub>ripple</sub>)</code>
+    </li>
+
+    <li><strong>Ripple Voltage RMS (V<sub>RMS</sub>):</strong>  
+      <code>V<sub>RMS</sub> = V<sub>ripple</sub> × 0.22867</code>
+    </li>
+
+    <li><strong>Ripple Current (I<sub>ripple</sub>):</strong>  
+      <code>I<sub>ripple</sub> = I<sub>out</sub> × 0.3</code>
+    </li>
+
+    <li><strong>Capacitor Current (I<sub>cap</sub>):</strong>  
+      <code>I<sub>cap</sub> = (V<sub>RMS</sub> / ESR) × 1000</code>
+    </li>
+
+    <li><strong>Capacitor Power Dissipation (P<sub>diss</sub>):</strong>  
+      <code>P<sub>diss</sub> = (I<sub>cap</sub>)<sup>2</sup> × ESR / 1000</code>
+    </li>
+
+    <li><strong>Input Transient Current (I<sub>trans</sub>):</strong>  
+      <code>I<sub>trans</sub> = 0.75 × I<sub>out</sub></code>
+    </li>
+
+    <li><strong>Input Bulk Capacitor (C<sub>in,bulk</sub>):</strong>  
+      <code>C<sub>in,bulk</sub> = (1.21 × I<sub>trans</sub><sup>2</sup> × L) / (V<sub>ripple</sub><sup>2</sup> × 1000)</code>
+    </li>
+
+    <li><strong>Output Impedance (Z<sub>out</sub>):</strong>  
+      <code>Z<sub>out</sub> = (V<sub>ripple</sub> / I<sub>transient</sub>) × 1000</code> (in mΩ)
+    </li>
+
+    <li><strong>Output Bulk Capacitor (C<sub>out,bulk</sub>):</strong>  
+      <code>C<sub>out,bulk</sub> = (1.21 × I<sub>transient</sub><sup>2</sup> × L) / (V<sub>ripple</sub><sup>2</sup> × 1000)</code>
+    </li>
+  </ul>
+
+  <p><em>Variables used:</em></p>
+  <ul>
+    <li><strong>V<sub>in</sub></strong>: Minimum input voltage (V)</li>
+    <li><strong>V<sub>out</sub></strong>: Output voltage (V)</li>
+    <li><strong>I<sub>out</sub></strong>: Output current (A)</li>
+    <li><strong>Efficiency</strong>: Efficiency in decimal (e.g., 0.8 for 80%)</li>
+    <li><strong>f<sub>sw</sub></strong>: Switching frequency (Hz)</li>
+    <li><strong>V<sub>ripple</sub></strong>: Ripple voltage peak-to-peak (V)</li>
+    <li><strong>ESR</strong>: Equivalent Series Resistance (mΩ)</li>
+    <li><strong>L</strong>: Inductor value (nH)</li>
+    <li><strong>I<sub>transient</sub></strong>: Output transient current (A)</li>
+  </ul>
+</div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

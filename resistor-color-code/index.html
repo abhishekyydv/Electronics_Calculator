@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <button id="backBtn" onclick="goBack()">⬅</button>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resistor Color Code Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="page-heading">Resistor Color Code Calculator</h1>
+
+    <label for="band-count">Select Number of Bands:</label>
+    <select id="band-count" onchange="setBandCount()">
+      <option value="" selected disabled>Select bands</option>
+      <option value="4">4 Bands</option>
+      <option value="5">5 Bands</option>
+      <option value="6">6 Bands</option>
+    </select>
+
+    <div id="band-selectors" class="selectors"></div>
+
+    <div class="resistor-wrapper">
+      <div class="resistor">
+        <!-- Terminals -->
+        <div class="terminal left-terminal"></div>
+        <div class="terminal right-terminal"></div>
+
+        <!-- Body -->
+        <div class="resistor-body">
+          <div class="band" id="band1" style="left: 60px;"></div>
+          <div class="band" id="band2" style="left: 90px;"></div>
+          <div class="band" id="band3" style="left: 120px;"></div>
+          <div class="band" id="band4" style="left: 150px;"></div>
+          <div class="band" id="band5" style="left: 190px;"></div>
+          <div class="band" id="band6" style="left: 230px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button onclick="calculateResistance()">Calculate</button>
+      <button onclick="resetAll()">Reset</button>
+    </div>
+
+    <div id="result" class="result"></div>
+    <div id="formula" class="formula"></div>
+
+    <hr />
+
+    <h2>Reverse Calculator: Enter Resistance Value</h2>
+    <input type="text" id="reverse-input" placeholder="e.g. 4.7k or 4700" />
+    <button onclick="reverseCalculate()">Find Color Bands</button>
+    <div id="reverse-result" class="result"></div>
+
+    <hr />
+
+       <h2>How This Calculator Works</h2>
+<p>
+  Resistors have colored bands that tell you their resistance value, which is how much they resist electric current. Each color means a number or multiplier. Here's how to read them:
+</p>
+<ul>
+  <li><strong>4-band resistors:</strong> The first two bands are numbers you write side by side. The third band tells you how many zeros to add (this is the multiplier). The last band tells you how exact the resistor is (tolerance).</li>
+  <li><strong>5-band resistors:</strong> The first three bands are numbers you write in a row. The fourth band is the multiplier (how many zeros or decimal shifts). The last band is tolerance.</li>
+  <li><strong>6-band resistors:</strong> Just like 5-band, but the sixth band shows the temperature coefficient, which means how much resistance changes with temperature (usually for special uses).</li>
+</ul>
+
+<p>
+  <strong>How to calculate resistance:</strong><br />
+  1. Write down the digits from the first bands (2 digits for 4-band, 3 digits for 5 or 6-band).<br />
+  2. Multiply that number by the multiplier from the multiplier band.<br />
+  3. The result is the resistance in ohms (Ω).<br />
+</p>
+
+<p>
+  <strong>Example:</strong><br />
+  For a 4-band resistor with bands:<br />
+  - Red (2)<br />
+  - Violet (7)<br />
+  - Yellow (×10,000)<br />
+  - Gold (±5% tolerance)<br />
+  You do:<br />
+  (27) × 10,000 = 270,000 Ω, which is 270 kΩ<br />
+  The ±5% means the actual resistance can vary by 5% above or below 270 kΩ.<br />
+</p>
+
+<p>
+  This calculator helps you pick the bands and see the value automatically, or enter a resistance and find the right color bands!
+</p>
+
+  <script src="script.js"></script>
+</body>
+</html>

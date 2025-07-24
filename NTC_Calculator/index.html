@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <button id="backBtn" onclick="goBack()">⬅</button>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NTC Thermistor Calculator</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="heading">NTC Thermistor Calculator</h1>
+
+    <h2>Circuit 1 (Resistor with GND)</h2>
+    <div class="image-placeholder"> <img src="circuit1.png"
+      style="width: 250px; height: 250px;"
+      ></div>
+    <div class="form-section" id="circuit1">
+  <label>
+    Nominal Temperature (°C):
+    <input type="number" id="c1_nomTemp" placeholder="e.g. 25" />
+  </label>
+  <label>
+    Nominal Resistance (Ω):
+    <input type="number" id="c1_nomRes" placeholder="e.g. 10000" />
+  </label>
+  <label>
+    B Value:
+    <input type="number" id="c1_bValue" placeholder="e.g. 3455" />
+  </label>
+  <label>
+    Required Temperature (°C):
+    <input type="number" id="c1_reqTemp" placeholder="e.g. 90" />
+  </label>
+  <label>
+    Resistor with Ground (Ω):
+    <input type="number" id="c1_resGND" placeholder="e.g. 750" />
+  </label>
+  <label>
+    ADC Reference Voltage (V):
+    <input type="number" id="c1_vref" placeholder="e.g. 5" />
+  </label>
+  <label>
+    ADC Bits:
+    <input type="number" id="c1_adcBits" placeholder="e.g. 12" />
+  </label>
+
+  <button onclick="calculateCircuit1()">Calculate Circuit 1</button>
+
+  <div class="result-box" id="result1"></div>
+</div>
+
+
+    <hr />
+
+    <h2>Circuit 2 (Resistor with VCC)</h2>
+    <div class="image-placeholder"><img src="circuit2.png"
+      style="width: 250px; height: 250px;"
+      ></div>
+    <div class="form-section" id="circuit2">
+  <label>
+    Nominal Temperature (°C):
+    <input type="number" id="c2_nomTemp" placeholder="e.g. 25" />
+  </label>
+  <label>
+    Nominal Resistance (Ω):
+    <input type="number" id="c2_nomRes" placeholder="e.g. 10000" />
+  </label>
+  <label>
+    B Value:
+    <input type="number" id="c2_bValue" placeholder="e.g. 3455" />
+  </label>
+  <label>
+    Required Temperature (°C):
+    <input type="number" id="c2_reqTemp" placeholder="e.g. 78" />
+  </label>
+  <label>
+    Resistor with VCC (Ω):
+    <input type="number" id="c2_resVCC" placeholder="e.g. 750" />
+  </label>
+  <label>
+    ADC Reference Voltage (V):
+    <input type="number" id="c2_vref" placeholder="e.g. 5" />
+  </label>
+  <label>
+    ADC Bits:
+    <input type="number" id="c2_adcBits" placeholder="e.g. 12" />
+  </label>
+
+  <button onclick="calculateCircuit2()">Calculate Circuit 2</button>
+
+  <div class="result-box" id="result2"></div>
+</div>
+
+
+    <section class="explanation">
+      <h2>📘 How It Works</h2>
+      <p>1️⃣ <strong>Resistance:</strong> <code>R<sub>T</sub> = R<sub>0</sub> × exp[B × (1/T - 1/T<sub>0</sub>)]</code></p>
+      <p>2️⃣ <strong>Voltage:</strong> <code>V<sub>out</sub> = V<sub>ref</sub> × (R<sub>fixed</sub> / (R<sub>fixed</sub> + R<sub>T</sub>))</code></p>
+      <p>3️⃣ <strong>ADC Value:</strong> <code>ADC = (V<sub>out</sub> / V<sub>ref</sub>) × 2<sup>n</sup></code></p>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

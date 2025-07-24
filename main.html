@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ohm Shastra | Beam Infotech</title>
+    <link rel="stylesheet" href="main.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Ohm Shastra</h1>
+
+      <input
+        type="text"
+        id="searchInput"
+        class="search-bar"
+        placeholder="Search calculators..."
+        aria-label="Search calculators"
+        tabindex="1"
+      />
+
+      <div class="grid">
+        <!-- REAL CALCULATORS -->
+        <div class="calculator" data-name="voltage divider calculator"> <!-- Please Keep these data name in small caps only  -->
+          <div class="image-placeholder">
+            <img
+              src="https://sc-b.digikeyassets.com/-/media/Images/Marketing/Resources/Calculator/Icon/voltagedividericon3x.svg?la=en-US&ts=1aa715c7-00d8-4ae3-9377-e2f23d53d865"
+              style="width: 90px; height: 90px;"
+              alt="Voltage Divider Image"
+            />
+          </div>
+          <div class="description">
+            Calculate output voltage using two resistors in a voltage divider
+            circuit.
+          </div>
+          <a href="voltage-divider/index.html" class="calc-btn"
+            >Voltage Divider</a
+          >
+        </div>
+
+        <div class="calculator" data-name="resistor color code calculator">
+          <div class="image-placeholder">
+            <img
+              src="https://sc-c.digikeyassets.com/-/media/Images/Marketing/Resources/Calculator/Icon/resistorcolorcodeicon3x.svg?la=en-US&ts=13bfc739-bc8f-4891-afef-3ff7c7ea0fa3"
+              style="width: 90px; height: 90px;"
+              alt="Resistor Colour Code Image"/>
+          </div>
+          <div class="description">
+            Decode resistor color bands to determine resistance, tolerance, and
+            value.
+          </div>
+          <a href="resistor-color-code/index.html" class="calc-btn"
+            >Resistor Color Code</a
+          >
+        </div>
+
+        <div class="calculator" data-name="opamp gain calculator">
+          <div class="image-placeholder"><img src="opamp.png"style="width: 160px; height: 160px;"
+            alt="Opamp Image"/></div>
+          <div class="description">
+            Calculate gain and output voltage for inverting or non-inverting
+            op-amp circuits.
+          </div>
+          <a href="opamp-gain/index.html" class="calc-btn">Op-Amp Gain</a>
+        </div>
+
+        <!-- PLACEHOLDER CALCULATORS (4 to 20) -->
+        <!-- You can update these as you build them -->
+        <div class="calculator" data-name="parallel resistor calculator"> <!-- Please Keep these data name in small caps only  -->
+          <div class="image-placeholder"><img src="https://sc-b.digikeyassets.com/-/media/Images/Marketing/Resources/Calculator/Icon/parallelseriesresistoricon3x.svg?la=en-IN&ts=c3df94db-837b-4e1b-b4ba-195292f23601"
+           style="width: 90px; height: 90px;"
+            alt="Parallel-Series Resistor"/></div>
+          <div class="description">Find equivalent resistance in series and parallel combinations.</div>
+          <a href="Resistance/index.html" class="calc-btn">Resistance</a>
+        </div>
+
+        <div class="calculator" data-name="dc-dc converter">
+          <div class="image-placeholder"><img src="buck-converter.png"
+            style="width: 120px; height:120px"
+            alt="buck-converter image"></div>
+          <div class="description"> Calculates parameters of a buck DC-DC converter</div>
+          <a href="DC-DC Buck Converter/index.html" class="calc-btn">DC-DC Buck Converter</a>
+        </div>
+
+        <div class="calculator" data-name="ntc calculator">
+          <div class="image-placeholder"><Img src="NTC.png"
+            style="width: 210px; height: 140px;"
+            alt="NTC Image"></div>
+          <div class="description">Calculate resistance of NTC thermistor at given temperature.</div>
+          <a href="NTC_Calculator/index.html" class="calc-btn">NTC</a>
+        </div>
+
+        <div class="calculator" data-name="dc-dc wattage">
+          <div class="image-placeholder"><img src="dc_dc.png"
+            style="width: 210px; height:140px;"
+            alt="dc_dc image"
+            /></div>
+          <div class="description"> Estimate wattage conversion efficiency in DC-DC circuits.</div>
+          <a href="#" class="calc-btn">DC-DC Wattage</a>
+        </div>
+
+        <div class="calculator" data-name="power converter">
+          <div class="image-placeholder"><img src="powerConverter.png"
+            style="width: 210px; height:100px;"
+            /></div>
+          <div class="description">Convert between AC/DC power, current, voltage, and power.</div>
+          <a href="PowerConverter/index.html" class="calc-btn">Power Converter</a>
+        </div>
+
+        <div class="calculator" data-name="Luminous">
+          <div class="image-placeholder"><img src="luminous.png"
+            style="width: 250px; height:200px;"
+            /></div>
+          <div class="description">Calculate luminous flux and luminous efficacy of light source.</div>
+          <a href="LuminousCalculator/index.html" class="calc-btn">Luminous</a>
+        </div>
+
+        <div class="calculator" data-name="flyback Converter">
+          <div class="image-placeholder"><img src="https://sc-b.digikeyassets.com/-/media/Images/Marketing/Resources/Calculator/Icon/requestcalcicon3x.svg?la=en-IN&ts=ce918445-6590-4ed7-bc52-ac54adbaa7a8"
+            style="width: 100px; height:85px;"
+            /></div>
+          <div class="description">Design and analyze flyback converter transformer parameters.</div>
+          <a href="FlybackConverter/index.html" class="calc-btn">Flyback Converter</a>
+        </div>
+
+        <div class="calculator" data-name="capacitance">
+          <div class="image-placeholder"><img src="https://sc-a.digikeyassets.com/-/media/Images/Marketing/Resources/Calculator/Icon/seriesparallelcapacitoricon3x.svg?la=en-IN&ts=4b1dee0b-6765-40a0-be90-a3774ed5bd43"
+            style="width: 100px; height:85px;"/></div>
+          <div class="description">Calculate total capacitance for series or parallel combinations.</div>
+          <a href="Capacitance/index.html" class="calc-btn">Capacitance</a>
+        </div>
+
+        <div class="calculator" data-name="currentDivider">
+          <div class="image-placeholder"><img src="https://sc-a.digikeyassets.com/-/media/Images/Marketing/Resources/Calculator/Icon/currentdividericon3x.svg?la=en-IN&ts=c584a5e3-620a-4cba-be75-be36318c0183"
+           style="width: 100px; height:85px;" /></div>
+          <div class="description">Compute how current divides between multiple resistive branches in a parallel circuit.</div>
+          <a href="CurrentDivider/index.html" class="calc-btn">Current Divider</a>
+        </div>
+
+        <div class="calculator" data-name="hexDecimalBinary">
+          <div class="image-placeholder"><img src="https://sc-c.digikeyassets.com/-/media/Images/Marketing/Resources/Calculator/Icon/NumberconvIcon3x.svg?la=en-IN&ts=0bb84b44-b902-41d7-b866-4001e43650e4"
+            style="width: 150px; height:140px;"/></div>
+          <div class="description">Convert between hexadecimal, binary, and decimal number systems.</div>
+          <a href="HexDecimalBinary/index.html" class="calc-btn">Hex↔Decimal↔Binary</a>
+        </div>
+
+        <div class="calculator" data-name="adc">
+          <div class="image-placeholder"><img src="https://sc-a.digikeyassets.com/-/media/Images/Marketing/Resources/Calculator/Icon/forcemainicon3x.svg?la=en-IN&ts=56313907-9a96-4eb4-930b-638b35e54a8b"
+            style="width: 130px; height:120px;"
+            /></div>
+          <div class="description">CConvert analog input to digital output using ADC formula.</div>
+          <a href="ADC/index.html" class="calc-btn">ADC</a>
+        </div>
+
+        <div class="calculator" data-name="calculator 15">
+          <div class="image-placeholder">Image space</div>
+          <div class="description">Description for Calculator 15</div>
+          <a href="#" class="calc-btn">Calculator 15</a>
+        </div>
+
+        <div class="calculator" data-name="calculator 16">
+          <div class="image-placeholder">Image space</div>
+          <div class="description">Description for Calculator 16</div>
+          <a href="#" class="calc-btn">Calculator 16</a>
+        </div>
+
+        <div class="calculator" data-name="calculator 17">
+          <div class="image-placeholder">Image space</div>
+          <div class="description">Description for Calculator 17</div>
+          <a href="#" class="calc-btn">Calculator 17</a>
+        </div>
+
+        <div class="calculator" data-name="calculator 18">
+          <div class="image-placeholder">Image space</div>
+          <div class="description">Description for Calculator 18</div>
+          <a href="#" class="calc-btn">Calculator 18</a>
+        </div>
+
+        <div class="calculator" data-name="calculator 19">
+          <div class="image-placeholder">Image space</div>
+          <div class="description">Description for Calculator 19</div>
+          <a href="#" class="calc-btn">Calculator 19</a>
+        </div>
+
+        <div class="calculator" data-name="calculator 20">
+          <div class="image-placeholder">Image space</div>
+          <div class="description">Description for Calculator 20</div>
+          <a href="#" class="calc-btn">Calculator 20</a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>
+        Idea Fuelled by <strong>Rahul Vishwakarma</strong>,Deputy Manager<br/>
+        Crafted with ❤️ by <strong>Abhishek Kumar</strong>, R&D Intern<br />
+        for <strong>Beam Infotech Pvt. Ltd.</strong><br />
+        Contact: info@beaminfotech.com
+      </p>
+    </footer>
+
+    <script>
+      const searchInput = document.getElementById("searchInput");
+      const calculators = document.querySelectorAll(".calculator");
+
+      searchInput.addEventListener("input", () => {
+        const query = searchInput.value.toLowerCase();
+
+        calculators.forEach((calc) => {
+          const name = calc.getAttribute("data-name");
+          if (name.includes(query)) {
+            calc.classList.remove("hidden");
+          } else {
+            calc.classList.add("hidden");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

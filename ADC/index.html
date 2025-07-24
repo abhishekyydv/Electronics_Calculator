@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ADC Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button id="backBtn" onclick="goBack()">⬅ Back</button>
+  <div class="container">
+    <h1>ADC (Analog to Digital Converter) Calculator</h1>
+
+    <div class="calculator-section">
+      <div class="form-row">
+        <label>ADC Resolution (bits):</label>
+        <input type="number" id="bits" placeholder="e.g. 10" min="1" />
+      </div>
+
+      <div class="form-row">
+        <label>Analog Voltage:</label>
+        <input type="number" id="analog" placeholder="e.g. 1.65" step="any" />
+        <select id="analog-unit">
+          <option value="1">V</option>
+          <option value="0.001">mV</option>
+          <option value="0.000001">µV</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Reference Voltage:</label>
+        <input type="number" id="vref" placeholder="e.g. 3.3" step="any" />
+        <select id="vref-unit">
+          <option value="1">V</option>
+          <option value="0.001">mV</option>
+          <option value="0.000001">µV</option>
+        </select>
+      </div>
+
+      <div class="button-group">
+        <button onclick="calculateADC()">Calculate</button>
+        <button onclick="resetADC()">Reset</button>
+      </div>
+
+      <div class="result-box">
+        <p><strong>Digital Output:</strong> <span id="numeric-output">—</span></p>
+        <p><strong>Binary Output:</strong> <span id="binary-output">—</span></p>
+      </div>
+    </div>
+
+    <div class="explanation">
+      <h2>How This Calculator Works</h2>
+      <p><strong>Formula:</strong></p>
+      <p><code>Digital Output = (Analog Voltage / Reference Voltage) × (2^ADC Bits - 1)</code></p>
+      <p>The analog and reference voltages are converted to volts based on the unit you select.</p>
+      <p>Binary output is the digital output converted to binary.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

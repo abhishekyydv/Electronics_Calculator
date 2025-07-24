@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <button id="backBtn" onclick="goBack()">⬅</button>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DC-DC Buck Converter Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>DC-DC Buck Converter Calculator</h1>
+  <div class="container">
+    <!-- Inputs -->
+    <section class="input-section">
+  <h2>Inputs</h2>
+  <div class="form-grid" id="inputGrid">
+    <div class="form-group">
+      <label for="vin">Input Voltage (Min) V</label>
+      <input type="number" id="vin" name="vin" step="any" placeholder="e.g. 12.8" />
+    </div>
+    <div class="form-group">
+      <label for="vout">Output Voltage V</label>
+      <input type="number" id="vout" name="vout" step="any" placeholder="e.g. 6" />
+    </div>
+    <div class="form-group">
+      <label for="iout">Output Current (A)</label>
+      <input type="number" id="iout" name="iout" step="any" placeholder="e.g. 3.4" />
+    </div>
+    <div class="form-group">
+      <label for="freq">Switching Frequency (Hz)</label>
+      <input type="number" id="freq" name="freq" step="any" placeholder="e.g. 40000" />
+    </div>
+    <div class="form-group">
+      <label for="rippleI">Ripple Current (A)</label>
+      <input type="number" id="rippleI" name="rippleI" step="any" placeholder="e.g. 1.02" />
+    </div>
+    <div class="form-group">
+      <label for="rippleV">Ripple Voltage (V)</label>
+      <input type="number" id="rippleV" name="rippleV" step="any" placeholder="e.g. 0.05" />
+    </div>
+    <div class="form-group">
+      <label for="turns">Assumed Turns</label>
+      <input type="number" id="turns" name="turns" step="1" placeholder="e.g. 6" />
+    </div>
+    <div class="form-group">
+      <label for="corePermeability">Core Permeability (uH)</label>
+      <input type="number" id="corePermeability" name="corePermeability" step="any" placeholder="e.g. 125" />
+    </div>
+    <div class="form-group">
+      <label for="meanLength">Mean Length of Magnetic Path (mm)</label>
+      <input type="number" id="meanLength" name="meanLength" step="any" placeholder="e.g. 56.7" />
+    </div>
+    <div class="form-group">
+      <label for="numWires">Custom Number of Wires</label>
+      <input type="number" id="numWires" name="numWires" step="1" placeholder="e.g. 3" />
+    </div>
+  </div>
+
+  <div class="btn-group">
+    <button class="btn primary" id="calculateBtn">Calculate</button>
+    <button class="btn secondary" id="resetBtn">Reset</button>
+  </div>
+</section>
+
+
+    <!-- Outputs -->
+    <section class="output-section">
+      <h2>Outputs</h2>
+      <div class="form-grid output-grid" id="outputGrid">
+        <div class="form-group">
+          <label>Duty Cycle (%)</label>
+          <input type="text" readonly id="dutyCycle" />
+        </div>
+        <div class="form-group">
+          <label>Power Inductor (uH)</label>
+          <input type="text" readonly id="powerInductor" />
+        </div>
+        <div class="form-group">
+          <label>Output Capacitor (uF)</label>
+          <input type="text" readonly id="outputCapacitor" />
+        </div>
+        <div class="form-group">
+          <label>Peak Current (A)</label>
+          <input type="text" readonly id="peakCurrent" />
+        </div>
+        <div class="form-group">
+          <label>Inductor Core Section Area (mm²)</label>
+          <input type="text" readonly id="inductorCoreArea" />
+        </div>
+        <div class="form-group">
+          <label>B (Flux Density) (T)</label>
+          <input type="text" readonly id="fluxDensity" />
+        </div>
+        <div class="form-group">
+          <label>Total Wire Area (mm²)</label>
+          <input type="text" readonly id="totalWireArea" />
+        </div>
+        <div class="form-group">
+          <label>Single Wire Area (mm²)</label>
+          <input type="text" readonly id="singleWireArea" />
+        </div>
+        <div class="form-group">
+          <label>Penetration Depth</label>
+          <input type="text" readonly id="penetrationDepth" />
+        </div>
+        <div class="form-group">
+          <label>Minimum Number of Wires</label>
+          <input type="text" readonly id="minWires" />
+        </div>
+        <div class="form-group">
+          <label>Diameter of Wire (mm)</label>
+          <input type="text" readonly id="wireDiameter" />
+        </div>
+        <div class="form-group empty"></div>
+      </div>
+    </section>
+  </div>
+  <!-- How It Works Section -->
+<section class="how-it-works">
+  <h2>How This Calculator Works</h2>
+  <p>This calculator is designed to help you quickly estimate key electrical parameters of a DC-DC Buck Converter based on standard design formulas used in power electronics.</p>
+
+  <div class="formulas">
+    <h3>Formulas Used:</h3>
+
+    <ul>
+      <li><strong>1. Duty Cycle (D):</strong> <code>D = Vout / Vin</code></li>
+      <li><strong>2. Peak Current (I<sub>peak</sub>):</strong> <code>Iout + (Ripple Current / 2)</code></li>
+      <li><strong>3. Power Inductor (L):</strong> <code>L = ((Vin - Vout) × D) / (f × ΔI)</code> → in µH</li>
+      <li><strong>4. Output Capacitor (C<sub>out</sub>):</strong> <code>C = ΔI / (8 × f × ΔV)</code> → in µF</li>
+      <li><strong>5. Inductor Core Section Area (A<sub>core</sub>):</strong></li>
+      <code>
+        A = ((L × Mean Magnetic Length) / (4π × 10⁻⁷ × μ × N²)) × 10⁶ &nbsp;&nbsp; (in mm²)
+      </code>
+      <li><strong>6. Flux Density (B):</strong> <code>B = (L × I<sub>peak</sub>) / (A<sub>core</sub> × N)</code></li>
+      <li><strong>7. Total Wire Area:</strong> <code>A<sub>total</sub> = I<sub>peak</sub> / 3.27</code> (A/mm² current density)</li>
+      <li><strong>8. Single Wire Area:</strong> <code>A<sub>single</sub> = A<sub>total</sub> / Number of wires</code></li>
+      <li><strong>9. Penetration Depth:</strong> <code>δ = 66.1 / √f</code></li>
+      <li><strong>10. Minimum Number of Wires:</strong> 
+        <code>
+          If (Total Wire Area > 2 × Penetration Depth) → 2<br/>
+          Else → 1
+        </code>
+      </li>
+      <li><strong>11. Wire Diameter:</strong> <code>d = 2 × √(A / π)</code></li>
+    </ul>
+  </div>
+</section>
+
+  <script src="script.js"></script>
+</body>
+</html>

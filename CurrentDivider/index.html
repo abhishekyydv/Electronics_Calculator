@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Current Divider Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button id="backBtn" onclick="goBack()">⬅ Back</button>
+  <div class="container">
+    <h1>Current Divider Calculator</h1>
+
+    <section class="calculator-section">
+      <h2>Inputs</h2>
+
+      <div class="form-group">
+        <label for="total-current">Total Current:</label>
+        <input type="number" id="total-current" placeholder="Enter current" />
+        <select id="current-unit">
+          <option value="1">A</option>
+          <option value="0.001">mA</option>
+          <option value="0.000001">µA</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Resistor Values (Ω):</label>
+        <button onclick="addResistor()">+ Add Resistor</button>
+        <button onclick="removeResistor()">- Remove Last</button>
+      </div>
+
+      <div id="resistor-container">
+        <div class="form-group resistor-row">
+          <input type="number" placeholder="Resistor 1 (Ω)" class="resistor-input" />
+        </div>
+        <div class="form-group resistor-row">
+          <input type="number" placeholder="Resistor 2 (Ω)" class="resistor-input" />
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button onclick="calculateCurrents()">Calculate</button>
+        <button onclick="resetForm()">Reset</button>
+      </div>
+
+      <div id="result" class="result-box" style="display: none;"></div>
+    </section>
+
+    <section class="explanation">
+      <h2>How This Calculator Works</h2>
+      <p>
+        In a parallel resistor network with total current \( I \), the current through resistor \( R_n \) is calculated as:
+      </p>
+      <pre>I_n = (R_total / R_n) * (I / sum(R_total))</pre>
+      <p>
+        Where:<br>
+        • \( I \) is the total input current<br>
+        • \( R_n \) is the resistance of the nth resistor<br>
+        • Total current is divided based on the resistance values (inversely proportional).
+      </p>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

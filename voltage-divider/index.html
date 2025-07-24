@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <button id="backBtn" onclick="goBack()">⬅</button>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Voltage Divider Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="page-heading">Voltage Divider Calculator</h1>
+
+    <section class="calculator-section">
+      <h2>Forward Calculation</h2>
+
+      <label for="vin">Input Voltage (Vin):</label>
+      <div class="input-group">
+        <input type="number" id="vin" placeholder="Enter Vin" step="any" />
+        <select id="vin-unit" aria-label="Select voltage unit for Vin">
+          <option value="1">V</option>
+          <option value="0.001">mV</option>
+          <option value="0.000001">µV</option>
+        </select>
+      </div>
+
+      <label for="r1">Resistor R1:</label>
+      <div class="input-group">
+        <input type="number" id="r1" placeholder="Enter R1" step="any" />
+        <select id="r1-unit" aria-label="Select resistance unit for R1">
+          <option value="1">Ω</option>
+          <option value="1000">kΩ</option>
+          <option value="1000000">MΩ</option>
+        </select>
+      </div>
+
+      <label for="r2">Resistor R2:</label>
+      <div class="input-group">
+        <input type="number" id="r2" placeholder="Enter R2" step="any" />
+        <select id="r2-unit" aria-label="Select resistance unit for R2">
+          <option value="1">Ω</option>
+          <option value="1000">kΩ</option>
+          <option value="1000000">MΩ</option>
+        </select>
+      </div>
+
+      <button onclick="calculateVoltageDivider()">Calculate</button>
+    </section>
+
+    <section class="output-section">
+      <h2>Results</h2>
+      <div class="result-box">
+        <p><strong>Vout:</strong> <span id="vout" class="highlight">—</span> </p>
+        <p><strong>Current:</strong> <span id="current" class="highlight">—</span> </p>
+        <p><strong>Power in R1:</strong> <span id="p1" class="highlight">—</span> </p>
+        <p><strong>Power in R2:</strong> <span id="p2" class="highlight">—</span> </p>
+      </div>
+    </section>
+
+    <hr />
+
+    <section class="reverse-section">
+      <h2>Reverse Calculation</h2>
+
+      <label for="rev-vin">Input Voltage (Vin):</label>
+      <div class="input-group">
+        <input type="number" id="rev-vin" placeholder="Enter Vin" step="any" />
+        <select id="rev-vin-unit" aria-label="Select voltage unit for Vin">
+          <option value="1">V</option>
+          <option value="0.001">mV</option>
+          <option value="0.000001">µV</option>
+        </select>
+      </div>
+
+      <label for="rev-vout">Output Voltage (Vout):</label>
+      <div class="input-group">
+        <input type="number" id="rev-vout" placeholder="Enter Vout" step="any" />
+        <select id="rev-vout-unit" aria-label="Select voltage unit for Vout">
+          <option value="1">V</option>
+          <option value="0.001">mV</option>
+          <option value="0.000001">µV</option>
+        </select>
+      </div>
+
+      <label for="known-resistor">Known Resistor:</label>
+      <div class="input-group">
+        <input type="number" id="known-resistor" placeholder="Enter value" step="any" />
+        <select id="known-unit" aria-label="Select resistance unit for known resistor">
+          <option value="1">Ω</option>
+          <option value="1000">kΩ</option>
+          <option value="1000000">MΩ</option>
+        </select>
+      </div>
+
+      <label for="known-type">Is the known resistor R1 or R2?</label>
+      <select id="known-type" aria-label="Select which resistor is known">
+        <option value="r1">R1</option>
+        <option value="r2">R2</option>
+      </select>
+
+      <button onclick="reverseCalculate()">Calculate Missing Resistor</button>
+
+      <div class="result-box small reverse-result-box">
+        <p><strong>Missing Resistor:</strong> <span id="missing-result" class="highlight">—</span> </p>
+      </div>
+    </section>
+
+    <hr />
+
+    <section class="explanation">
+      <h2>How This Calculator Works</h2>
+      <p>
+        A voltage divider uses two resistors (R1 and R2) in series to produce a lower voltage (Vout) from a higher voltage (Vin).
+        The formula is:
+      </p>
+      <p><code>Vout = Vin × R2 / (R1 + R2)</code></p>
+
+      <ul>
+        <li><strong>Vout:</strong> Voltage across R2.</li>
+        <li><strong>Current:</strong> Same current flows through R1 and R2: <code>I = Vin / (R1 + R2)</code></li>
+        <li><strong>Power:</strong> Power dissipated in each resistor is <code>P = I² × R</code></li>
+      </ul>
+
+      <p>
+        In reverse calculation, if you know Vin, Vout, and one resistor, you can calculate the other resistor using algebra:
+      </p>
+      <ul>
+        <li>If R1 is known: <code>R2 = (R1 × Vout) / (Vin - Vout)</code></li>
+        <li>If R2 is known: <code>R1 = R2 × (Vin - Vout) / Vout</code></li>
+      </ul>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

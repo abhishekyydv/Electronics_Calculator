@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Number System Converter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button id="backBtn" onclick="goBack()">⬅ Back</button>
+  <div class="container">
+    <h1 class="main-heading">Hex ↔ Decimal ↔ Binary Converter</h1>
+
+    <div class="tabs">
+      <button class="tab-button active" onclick="openTab('hexTab')">Hex ➝ Decimal & Binary</button>
+      <button class="tab-button" onclick="openTab('decimalTab')">Decimal ➝ Hex & Binary</button>
+      <button class="tab-button" onclick="openTab('binaryTab')">Binary ➝ Decimal & Hex</button>
+    </div>
+
+    <!-- Hex to Decimal and Binary -->
+    <div id="hexTab" class="tab-content active">
+      <h2>Hex ➝ Decimal & Binary</h2>
+      <input type="text" id="hexInput" placeholder="Enter Hex (e.g. 1A3)" />
+      <button onclick="convertHex()">Convert</button>
+      <button onclick="reset('hex')">Reset</button>
+      <div class="results">
+        <p><strong>Decimal:</strong> <span id="hexToDec">—</span></p>
+        <p><strong>Binary:</strong> <span id="hexToBin">—</span></p>
+      </div>
+      <div class="explanation">
+        <h3>How this calculator works:</h3>
+        <p><strong>1. Hex ➝ Decimal:</strong> Multiply each digit by 16<sup>n</sup> starting from the right. E.g. <code>1A</code> = <code>1×16 + 10×1 = 26</code>.</p>
+        <p><strong>2. Decimal ➝ Binary:</strong> Divide the decimal repeatedly by 2 and collect remainders. <code>26 ➝ 11010</code>.</p>
+      </div>
+    </div>
+
+    <!-- Decimal to Hex and Binary -->
+    <div id="decimalTab" class="tab-content">
+      <h2>Decimal ➝ Hex & Binary</h2>
+      <input type="number" id="decInput" placeholder="Enter Decimal (e.g. 26)" />
+      <button onclick="convertDecimal()">Convert</button>
+      <button onclick="reset('dec')">Reset</button>
+      <div class="results">
+        <p><strong>Hex:</strong> <span id="decToHex">—</span></p>
+        <p><strong>Binary:</strong> <span id="decToBin">—</span></p>
+      </div>
+      <div class="explanation">
+        <h3>How this calculator works:</h3>
+        <p><strong>1. Decimal ➝ Hex:</strong> Divide the number by 16 repeatedly and convert remainders into hex characters.</p>
+        <p><strong>2. Decimal ➝ Binary:</strong> Divide repeatedly by 2 and note remainders.</p>
+      </div>
+    </div>
+
+    <!-- Binary to Decimal and Hex -->
+    <div id="binaryTab" class="tab-content">
+      <h2>Binary ➝ Decimal & Hex</h2>
+      <input type="text" id="binInput" placeholder="Enter Binary (e.g. 11010)" />
+      <button onclick="convertBinary()">Convert</button>
+      <button onclick="reset('bin')">Reset</button>
+      <div class="results">
+        <p><strong>Decimal:</strong> <span id="binToDec">—</span></p>
+        <p><strong>Hex:</strong> <span id="binToHex">—</span></p>
+      </div>
+      <div class="explanation">
+        <h3>How this calculator works:</h3>
+        <p><strong>1. Binary ➝ Decimal:</strong> Multiply each bit by 2<sup>n</sup> from right to left. E.g. <code>11010</code> = <code>1×16 + 1×8 + 0×4 + 1×2 + 0×1 = 26</code>.</p>
+        <p><strong>2. Decimal ➝ Hex:</strong> Convert that decimal into hex via base-16 division.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

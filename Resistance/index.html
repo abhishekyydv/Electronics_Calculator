@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <button id="backBtn" onclick="goBack()">⬅</button>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Series & Parallel Resistor Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="page-heading">Series & Parallel Resistor Calculator</h1>
+
+    <section class="calculator-section">
+      <h2>Series Combination</h2>
+      <div id="series-list" class="resistor-list">
+        <div class="resistor-input"><input type="number" placeholder="Ω" min="0" step="any" /></div>
+        <div class="resistor-input"><input type="number" placeholder="Ω" min="0" step="any" /></div>
+      </div>
+      <button type="button" class="add-btn" onclick="addResistor('series')">+ Add Resistor</button>
+      <button type="button" onclick="calculateSeries()">Calculate Total (Series)</button>
+      <div class="result-box"><p><strong>Total Series:</strong> <span id="series-result">—</span></p></div>
+    </section>
+
+    <section class="calculator-section">
+      <h2>Parallel Combination</h2>
+      <div id="parallel-list" class="resistor-list">
+        <div class="resistor-input"><input type="number" placeholder="Ω" min="0" step="any" /></div>
+        <div class="resistor-input"><input type="number" placeholder="Ω" min="0" step="any" /></div>
+      </div>
+      <button type="button" class="add-btn" onclick="addResistor('parallel')">+ Add Resistor</button>
+      <button type="button" onclick="calculateParallel()">Calculate Total (Parallel)</button>
+      <div class="result-box"><p><strong>Total Parallel:</strong> <span id="parallel-result">—</span></p></div>
+    </section>
+
+    <hr />
+
+    <section class="explanation">
+      <h2>How This Calculator Works</h2>
+      <p>In series: <code>R_total = R₁ + R₂ + …</code></p>
+      <p>In parallel: <code>1 / R_total = 1/R₁ + 1/R₂ + …</code></p>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

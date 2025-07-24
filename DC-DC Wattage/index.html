@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DC-DC Wattage Calculator</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>DC-DC Wattage Calculator</h1>
+
+    <nav>
+      <button type="button" onclick="showSection('currentSense')">Current Sense</button>
+      <button type="button" onclick="showSection('voltageDivider')">Voltage Divider</button>
+      <button type="button" onclick="showSection('thermal')">Thermal</button>
+      <button type="button" onclick="showSection('pwm')">PWM Duty</button>
+      <button type="button" onclick="showSection('clock')">System Clock</button>
+      <button type="button" onclick="showSection('dutyDecrement')">Duty Decrement</button>
+      <button type="button" onclick="showSection('dutyIncrement')">Duty Increment</button>
+    </nav>
+
+    <!-- Current Sense Section -->
+    <section id="currentSense" class="calculator-section active">
+      <h2>Current Sense</h2>
+      <label>Resistor (Ω): <input id="cs_resistor" type="number" step="any"></label>
+      <label>Current (A): <input id="cs_current" type="number" step="any"></label>
+      <label>Gain: <input id="cs_gain" type="number" ></label>
+      <label>ADC Bits: <input id="cs_adc" type="number" ></label>
+      <label>System Voltage (V): <input id="cs_sysvolt" type="number" ></label>
+      <button type="button" onclick="calculateCurrentSense()">Calculate</button>
+      <button type="button" onclick="resetSection('currentSense')">Reset</button>
+      <div class="output">
+        <p>Voltage: <span id="cs_voltage"></span> V</p>
+        <p>With Gain Voltage: <span id="cs_gainvolt"></span> V</p>
+        <p>ADC Value: <span id="cs_integer"></span></p>
+        <p>8 bit(/8): <span id="cs_8bit"></span></p>
+      </div>
+    </section>
+
+    <!-- Voltage Divider Section -->
+    <section id="voltageDivider" class="calculator-section">
+      <h2>Voltage Divider</h2>
+      <label>R1 (Ω): <input id="vd_r1" type="number" step="any"></label>
+      <label>R2 (Ω): <input id="vd_r2" type="number" step="any"></label>
+      <label>Vin (V): <input id="vd_vin" type="number" step="any"></label>
+      <label>ADC Bits: <input id="vd_adc" type="number"></label>
+      <label>System Voltage (V): <input id="vd_sysvolt" type="number"></label>
+      <button type="button" onclick="calculateVoltageDivider()">Calculate</button>
+      <button type="button" onclick="resetSection('voltageDivider')">Reset</button>
+      <div class="output">
+        <p>Vout: <span id="vd_vout"></span> V</p>
+        <p>ADC Value: <span id="vd_adcvalue"></span></p>
+        <p>8 bit(/8): <span id="vd_8bit"></span></p>
+      </div>
+    </section>
+
+    <!-- Thermal Section -->
+    <section id="thermal" class="calculator-section">
+      <h2>Thermal</h2>
+      <label>B-Value: <input id="th_bvalue" type="number" step="any"></label>
+      <label>Nominal Temp (°C): <input id="th_t0" type="number" step="any"></label>
+      <label>Nominal Resistance (Ω): <input id="th_r0" type="number" step="any"></label>
+      <label>Target Temp (°C): <input id="th_temp" type="number" step="any"></label>
+      <label>Resistor with GND (Ω): <input id="th_rg" type="number" step="any"></label>
+      <label>System Voltage (V): <input id="th_sysvolt" type="number" step="any"></label>
+      <label>ADC Bits: <input id="th_adc" type="number"></label>
+      <button type="button" onclick="calculateThermal()">Calculate</button>
+      <button type="button" onclick="resetSection('thermal')">Reset</button>
+      <div class="output">
+        <p>Resistance: <span id="th_resistance"></span> Ω</p>
+        <p>Voltage: <span id="th_vout"></span> V</p>
+        <p>ADC Value: <span id="th_adcvalue"></span></p>
+      </div>
+    </section>
+
+    <section id="pwm" class="calculator-section">
+  <h2>PWM Duty</h2>
+
+  <div class="grid-container">
+
+    <!-- X1 Input & Outputs -->
+    <div class="grid-item">
+      <label for="pwm_x1">X1 (Voltage in V)</label>
+      <input id="pwm_x1" type="number" step="any" placeholder="Enter X1">
+    </div>
+    <div class="grid-item">
+      <label>Potential Divider (X1)</label>
+      <input id="pwm_pd1" readonly placeholder="Auto-calculated">
+    </div>
+    <div class="grid-item">
+      <label>ADC Integer (X1)</label>
+      <input id="pwm_adc1" readonly placeholder="Auto-calculated">
+    </div>
+
+    <!-- Y1 -->
+    <div class="grid-item">
+      <label for="pwm_y1">Y1 (Time in µs)</label>
+      <input id="pwm_y1" type="number" step="any" placeholder="Enter Y1">
+    </div>
+    <div class="grid-item">
+      <label>ADC Integer (Y1)</label>
+      <input id="pwm_yadc1" readonly placeholder="Auto-calculated">
+    </div>
+
+    <!-- X2 -->
+    <div class="grid-item">
+      <label for="pwm_x2">X2 (Voltage in V)</label>
+      <input id="pwm_x2" type="number" step="any" placeholder="Enter X2">
+    </div>
+    <div class="grid-item">
+      <label>Potential Divider (X2)</label>
+      <input id="pwm_pd2" readonly placeholder="Auto-calculated">
+    </div>
+    <div class="grid-item">
+      <label>ADC Integer (X2)</label>
+      <input id="pwm_adc2" readonly placeholder="Auto-calculated">
+    </div>
+
+    <!-- Y2 -->
+    <div class="grid-item">
+      <label for="pwm_y2">Y2 (Time in µs)</label>
+      <input id="pwm_y2" type="number" step="any" placeholder="Enter Y2">
+    </div>
+    <div class="grid-item">
+      <label>ADC Integer (Y2)</label>
+      <input id="pwm_yadc2" readonly placeholder="Auto-calculated">
+    </div>
+
+    <!-- Final Output -->
+    <div class="grid-item wide">
+      <label><strong>Slope (m)</strong></label>
+      <input id="pwm_slope" readonly placeholder="Calculated slope">
+    </div>
+    <div class="grid-item wide">
+      <label><strong>Constant (C)</strong></label>
+      <input id="pwm_const" readonly placeholder="Calculated constant">
+    </div>
+
+  </div>
+
+  <div class="button-container">
+    <button onclick="calculatePWM()">Calculate</button>
+    <button onclick="resetSection('pwm')">Reset</button>
+  </div>
+</section>
+
+
+    <!-- Clock Section -->
+    <section id="clock" class="calculator-section">
+      <h2>System Clock</h2>
+      <label>Clock Frequency (Hz): <input id="clk_freq" type="number" value="48000000" step="any"></label>
+      <button type="button" onclick="calculateClock()">Calculate</button>
+      <button type="button" onclick="resetSection('clock')">Reset</button>
+      <div class="output">
+        <p>Single Clock Time: <span id="clk_time"></span> µs</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <button id="backBtn" onclick="goBack()">⬅</button>
+  <meta charset="UTF-8">
+  <title>Flyback Converter Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1 class="title">Flyback Converter Calculator</h1>
+
+  <div class="container">
+    <!-- Input Section -->
+    <div class="input-section">
+
+      <!-- Section 1: General Parameters -->
+      <div class="input-block">
+        <h2>General Parameters</h2>
+        <div class="input-grid">
+  <div class="form-row"><label>Input Voltage Min (V):</label><input type="text" id="vmin" placeholder="e.g. 140"></div>
+  <div class="form-row"><label>Input Voltage Max (V):</label><input type="text" id="vmax" placeholder="e.g. 400"></div>
+  <div class="form-row"><label>Secondary Diode Vf (V):</label><input type="text" id="vf" placeholder="e.g. 0.95"></div>
+  <div class="form-row"><label>Output Secondary Voltage (V):</label><input type="text" id="vout" placeholder="e.g. 42"></div>
+  <div class="form-row"><label>Output Secondary Current (A):</label><input type="text" id="iout" placeholder="e.g. 3"></div>
+  <div class="form-row"><label>Auxiliary 1 Voltage (V):</label><input type="text" id="aux1" placeholder="e.g. 10"></div>
+  <div class="form-row"><label>Auxiliary 2 Voltage (V):</label><input type="text" id="aux2" placeholder="e.g. 7"></div>
+  <div class="form-row"><label>Auxiliary 3 Voltage (V):</label><input type="text" id="aux3" placeholder="e.g. 0"></div>
+  <div class="form-row"><label>Output Ripples (V):</label><input type="text" id="ripple" placeholder="e.g. 0.1"></div>
+  <div class="form-row"><label>Operation Mode (CCM):</label><input type="text" id="mode" placeholder="e.g. 0 or 1"></div>
+  <div class="form-row"><label>Operation Mode (DCM):</label><input type="text" id="mode" placeholder="e.g. 0 or 1"></div>
+  <div class="form-row"><label>Max Duty Cycle (%):</label><input type="text" id="duty" placeholder="e.g. 50"></div>
+  <div class="form-row"><label>Switching Frequency (Hz):</label><input type="text" id="freq" placeholder="e.g. 55000"></div>
+  <div class="form-row"><label>Estimated Efficiency (%):</label><input type="text" id="eff" placeholder="e.g. 95"></div>
+  <div class="form-row"><label>Transformer Ae (mm²):</label><input type="text" id="ae" placeholder="e.g. 153"></div>
+  <div class="form-row"><label>Transformer Aw (mm²):</label><input type="text" id="aw" placeholder="e.g. 200"></div>
+  <div class="form-row"><label>Magnetic Flux Bmax (T):</label><input type="text" id="bmax" placeholder="e.g. 0.2"></div>
+  <div class="form-row"><label>Custom Primary Inductance (uH):</label><input type="text" id="cpi" placeholder="e.g. 0 or 1"></div>
+</div>
+        <div class="button-group">
+          <button onclick="calculateGeneralParameters()">Calculate</button>
+<button onclick="resetGeneralParameters()">Reset</button>
+        </div>
+      </div>
+
+      <!-- Section 2: Component Parameters -->
+      <div class="input-block">
+        <h2>Winding Parameters</h2>
+<div class="input-grid">
+  <div class="form-row">
+    <label>Selected Wire Size(mm):</label>
+    <input type="text" placeholder="Primary">
+    <input type="text" placeholder="Secondary">
+  </div>
+  
+</div>
+        <div class="button-group">
+          <button onclick="calculateWindingParameters()">Calculate</button>
+<button onclick="resetWindingParameters()">Reset</button>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Output Section -->
+    <div class="output-section">
+
+      <!-- Block 1 -->
+      <div class="output-block">
+  <h2>Key Electrical Results</h2>
+  <div class="output-3-grid">
+    <div class="output-card">
+      <label>Primary Inductance (H):</label><input type="text" readonly>
+      <label>Secondary Turn Ratio:</label><input type="text" readonly>
+      <label>Primary Turns:</label><input type="text" readonly>
+      <label>Secondary Turns:</label><input type="text" readonly>
+      <label>Auxiliary 1 Turns:</label><input type="text" readonly>
+      <label>Auxiliary 2 Turns:</label><input type="text" readonly>
+      <label>Auxiliary 3 Turns:</label><input type="text" readonly>
+      <label>MOSFET Vds (V):</label><input type="text" readonly>
+      <label>MOSFET Ids (A):</label><input type="text" readonly>     
+      <label>Output Diode Voltage (V):</label><input type="text" readonly>
+      <label>Output Cap. (F):</label><input type="text" readonly>
+    </div>
+    <div class="output-card">
+      <label>Choosen Inductance:</label><input type="text" readonly>
+      <label>Penetration depth:</label><input type="text" readonly>
+      <label>Primary Wire Diameter(mm²):</label><input type="text" readonly>
+      <label>Min No. of Wires:</label><input type="text" readonly placeholder=" Primary">
+      <label>Secondary Wire Diameter(mm²):</label><input type="text" readonly>
+      <label>Min No. of Wires:</label><input type="text" readonly placeholder=" Secondary">
+      
+      
+    </div>
+    <div class="output-card">
+      <label>Primary Total Diameter(mm²):</label><input type="text" readonly>
+      <label>Secondary Total Diameter(mm²):</label><input type="text" readonly>
+      <label>Input Power(W):</label><input type="text" readonly>
+      <label>Max Input Current(A):</label><input type="text" readonly>
+    </div>
+  </div>
+</div>
+
+      <!-- Block 2 -->
+<div class="output-block">
+  <h2>Transformer Design</h2>
+  <div class="output-card">
+    <label>Min Required Transformer Area (mm⁴):</label><input type="text" readonly>
+    <label>Selected Core Area:</label><input type="text" readonly>
+    <label>Result:</label><input type="text" readonly>
+  </div>
+</div>
+
+<!-- Block 3 -->
+<div class="output-block">
+  <h2>Snubber Design</h2>
+  <div class="output-card">
+    <label>Snubber Voltage (V):</label><input type="text" readonly>
+    <label>Power (W):</label><input type="text" readonly>
+    <label>Resistor (Ω)</label><input type="text" readonly>
+    <label>Capacitor (uF)</label><input type="text" readonly>
+  </div>
+</div>
+
+
+<!-- Block 4 -->
+<div class="output-block">
+  <h2>Winding Outputs</h2>
+
+  <div class="winding-grid">
+    <div class="winding-row heading-row">
+      <div class="label-cell"></div>
+      <div class="value-cell"><strong>Primary</strong></div>
+      <div class="value-cell"><strong>Secondary</strong></div>
+    </div>
+
+    <div class="winding-row">
+      <div class="label-cell">Radius:</div>
+      <div class="value-cell"><input type="text" readonly></div>
+      <div class="value-cell"><input type="text" readonly></div>
+    </div>
+
+    <div class="winding-row">
+      <div class="label-cell">Total Area:</div>
+      <div class="value-cell"><input type="text" readonly></div>
+      <div class="value-cell"><input type="text" readonly></div>
+    </div>
+
+    <div class="winding-row">
+      <div class="label-cell">No. of Strands:</div>
+      <div class="value-cell"><input type="text" readonly></div>
+      <div class="value-cell"><input type="text" readonly></div>
+    </div>
+
+    <div class="winding-row">
+      <div class="label-cell">Resultant Area:</div>
+      <div class="value-cell"><input type="text" readonly></div>
+      <div class="value-cell"><input type="text" readonly></div>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

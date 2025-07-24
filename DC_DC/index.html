@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DC-DC Wattage Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h1 class="main-heading">⚡ DC-DC Wattage Calculator</h1>
+
+    <div class="tab-menu">
+      <button class="tab-btn active" data-tab="currentSense">Current Sense</button>
+      <button class="tab-btn" data-tab="inputVoltage">Input Voltage</button>
+      <button class="tab-btn" data-tab="thermal">Thermal</button>
+      <button class="tab-btn" data-tab="systemClock">System Clock</button>
+      <button class="tab-btn" data-tab="maxDuty">Max Duty</button>
+      <button class="tab-btn" data-tab="linearSlope">Duty Increment</button>
+      <button class="tab-btn" data-tab="dutyAdjust">Duty Decrement</button>
+    </div>
+
+    <div class="tab-content">
+      <!-- Tab content will be injected here -->
+      <div id="currentSense" class="tab-pane active">
+  <h2>Current Sense Calculator</h2>
+
+  <div class="form-group">
+    <label>Current Sense Resistor (Ω):
+      <input type="number" id="cs_resistor" placeholder="e.g. 0.011" step="any" />
+    </label>
+    <label>Current (A):
+      <input type="number" id="cs_current" placeholder="e.g. 5" step="any" />
+    </label>
+    <label>Gain:
+      <input type="number" id="cs_gain" placeholder="e.g. 51" />
+    </label>
+    <label>ADC Resolution (bits):
+      <input type="number" id="cs_adc" placeholder="e.g. 12" />
+    </label>
+    <label>System Voltage (V):
+      <input type="number" id="cs_sysvoltage" placeholder="e.g. 5" step="any" />
+    </label>
+  </div>
+
+  <div class="button-group">
+    <button onclick="calculateCurrentSense()">Calculate</button>
+    <button onclick="resetCurrentSense()">Reset</button>
+  </div>
+
+  <div class="form-group output-fields">
+  <label>Voltage (V):
+    <input type="text" id="cs_voltage" readonly />
+  </label>
+  <label>With Gain Voltage (V):
+    <input type="text" id="cs_gainVoltage" readonly />
+  </label>
+  <label>Integer Value:
+    <input type="text" id="cs_intVal" readonly />
+  </label>
+  <label>Divided by 8:
+    <input type="text" id="cs_div8" readonly />
+  </label>
+  <label>Current × Voltage Product:
+    <input type="text" id="cs_cvProduct" readonly />
+  </label>
+</div>
+</div>
+
+      <div id="inputVoltage" class="tab-pane"> <h2>Input Voltage Calculator</h2></div>
+      <div id="thermal" class="tab-pane"> <h2>Thermal Calculator</h2></div>
+      <div id="systemClock" class="tab-pane"> <h2>System Clock Calculator</h2></div>
+      <div id="maxDuty" class="tab-pane"> <h2>Max Duty Cycle Calculator</h2></div>
+      <div id="linearSlope" class="tab-pane"> <h2>Duty Increment</h2></div>
+      <div id="dutyAdjust" class="tab-pane"> <h2>Duty Adjustment Calculator</h2></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

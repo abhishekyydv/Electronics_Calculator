@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <button id="backBtn" onclick="goBack()">⬅</button>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>mcd ➝ Lumens Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="page-heading">MCD ➝ Lumens Calculator</h1>
+
+    <div class="section">
+      <h2>Input Parameters</h2>
+      <div class="form-group">
+        <label>Luminous Intensity (mcd):<input type="number" id="mcd" placeholder="e.g., 15000" /></label>
+        <label>Beam Angle (°):<input type="number" id="beamAngle" placeholder="E.g., 30" /></label>
+        <label>Distance (m):<input type="number" id="distance" placeholder="Optional, e.g., 1" /></label>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Results</h2>
+      <div class="output-group">
+        <div class="output-item"><label>Candela (cd):</label><div class="output-box" id="cd"></div></div>
+        <div class="output-item"><label>Luminous Flux (lm):</label><div class="output-box" id="lumens"></div></div>
+        <div class="output-item"><label>Illuminance (lux):</label><div class="output-box" id="lux"></div></div>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button onclick="calculate()">Calculate</button>
+      <button onclick="resetFields()">Reset</button>
+    </div>
+
+    <div class="section explanation">
+      <h2>How This Calculator Works</h2>
+      <ul>
+        <li><strong>cd</strong> = mcd ÷ 1000</li>
+        <li><strong>Luminous Flux (lm):</strong><br /><code>lm = 4π · cd · (1 − cos(beamAngle ÷ 2))</code></li>
+        <li><strong>Lux (if distance provided):</strong><br /><code>lux = lm ÷ (4π · distance²)</code></li>
+      </ul>
+      <p class="note">Formulas assume a conical beam pattern and isotropic emission within that cone.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

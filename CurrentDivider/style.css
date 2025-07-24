@@ -1,0 +1,152 @@
+/* Base Reset */
+* {
+  box-sizing: border-box;
+  font-family: 'Times New Roman', serif;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  background: #f5f8fa;
+  color: #333;
+}
+
+/* Floating Back Button */
+#backBtn {
+  position: fixed;
+  top: 15px;
+  left: 20px;
+  background-color: #00796b;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  cursor: pointer;
+  z-index: 999;
+}
+
+#backBtn:hover {
+  background-color: #004d40;
+}
+
+/* Container */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 25px 30px;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0, 128, 128, 0.1);
+}
+
+/* Headings */
+h1 {
+  font-size: 28px;
+  text-align: center;
+  font-weight: bold;
+  color: #004d40;
+  margin-bottom: 25px;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #00695c;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #00acc1;
+  padding-bottom: 4px;
+}
+
+/* Section Styling */
+.calculator-section,
+.explanation {
+  margin-bottom: 30px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.form-group label {
+  min-width: 170px;
+  font-weight: bold;
+  color: #222;
+}
+
+input[type="number"],
+select {
+  padding: 6px 10px;
+  font-size: 14px;
+  width: 120px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9fcff;
+  transition: border 0.2s;
+}
+
+input[type="number"]:focus,
+select:focus {
+  outline: none;
+  border-color: #0097a7;
+  box-shadow: 0 0 4px rgba(0, 151, 167, 0.3);
+}
+
+/* Buttons */
+button {
+  padding: 8px 18px;
+  margin-top: 10px;
+  background-color: #009688;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #00695c;
+}
+
+/* Results */
+.result-box {
+  margin-top: 18px;
+  padding: 14px;
+  background-color: #e0f7fa;
+  border-left: 5px solid #00796b;
+  font-size: 15px;
+  line-height: 1.6;
+  border-radius: 6px;
+}
+
+/* Explanation Section */
+.explanation {
+  background-color: #fffde7;
+  padding: 20px;
+  border-left: 5px solid #fbc02d;
+  border-radius: 8px;
+  line-height: 1.6;
+}
+
+.explanation pre {
+  font-family: 'Courier New', monospace;
+  background-color: #f1f1f1;
+  padding: 6px;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+ul {
+  margin-top: 8px;
+  padding-left: 18px;
+}
+
+ul li {
+  margin-bottom: 4px;
+}
